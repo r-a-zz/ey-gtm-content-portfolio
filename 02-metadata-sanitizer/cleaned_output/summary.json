@@ -1,0 +1,45 @@
+{
+  "input_folder": "C:\\Users\\ASUS\\Documents\\Project\\ey-gtm-portfolio\\02-metadata-sanitizer\\sample_input",
+  "output_folder": "C:\\Users\\ASUS\\Documents\\Project\\ey-gtm-portfolio\\02-metadata-sanitizer\\cleaned_output",
+  "files_found": 3,
+  "files_processed_successfully": 3,
+  "files_failed": 0,
+  "results": [
+    {
+      "file": "campaign-notes.html",
+      "status": "processed",
+      "metadata": {
+        "title": "Q3 Campaign Launch",
+        "date": "2024-07-08",
+        "author": "Maya Chen",
+        "title_valid": true,
+        "date_valid": true,
+        "author_valid": true
+      }
+    },
+    {
+      "file": "market-insight.txt",
+      "status": "processed",
+      "metadata": {
+        "title": "Market Signals for Growth",
+        "date": "2024-08-14",
+        "author": "Jordan Lee",
+        "title_valid": true,
+        "date_valid": true,
+        "author_valid": true
+      }
+    },
+    {
+      "file": "partner-brief.html",
+      "status": "processed",
+      "metadata": {
+        "title": "Partner Enablement Brief",
+        "date": "2024-09-02",
+        "author": "Riley Okafor",
+        "title_valid": true,
+        "date_valid": true,
+        "author_valid": true
+      }
+    }
+  ]
+}
