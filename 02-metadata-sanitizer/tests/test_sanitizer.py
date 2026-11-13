@@ -54,6 +54,19 @@ class MetadataValidationTests(unittest.TestCase):
         self.assertTrue(metadata.author_valid)
         self.assertIn("Date is missing or is not a valid YYYY-MM-DD date", sanitizer.validation_issues(metadata))
 
+    def test_html_meta_attributes_can_appear_in_either_order(self):
+        raw = (
+            '<meta content="2025-03-01" name="date">'
+            '<meta content="Editor" name="author">'
+            '<meta content="ASSET-02" name="asset-id">'
+        )
+        metadata = sanitizer.extract_metadata(raw, "brief.html")
+        self.assertEqual(metadata.date, "2025-03-01")
+        self.assertEqual(metadata.author, "Editor")
+        self.assertEqual(metadata.asset_id, "ASSET-02")
+        self.assertTrue(metadata.date_valid)
+        self.assertTrue(metadata.author_valid)
+
 
 class BatchProcessingTests(unittest.TestCase):
     def test_duplicate_stems_and_asset_ids_are_reported_without_overwrite(self):

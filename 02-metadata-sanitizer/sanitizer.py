@@ -22,21 +22,14 @@ TITLE_RE = re.compile(
     r"(?P<value>.*?)(?:</title>|$)",
     re.IGNORECASE | re.MULTILINE,
 )
-DATE_RE = re.compile(
-    r"(?:<meta[^>]+name\s*=\s*['\"]date['\"][^>]+content\s*=\s*['\"]|"
-    r"^\s*date\s*:\s*)(?P<value>[^<'\"\r\n]+)",
-    re.IGNORECASE | re.MULTILINE,
+META_TAG_RE = re.compile(r"<meta\b[^>]*>", re.IGNORECASE)
+META_ATTRIBUTE_RE = re.compile(
+    r"(?P<name>[a-z][\w-]*)\s*=\s*['\"](?P<value>[^'\"]*)['\"]",
+    re.IGNORECASE,
 )
-AUTHOR_RE = re.compile(
-    r"(?:<meta[^>]+name\s*=\s*['\"]author['\"][^>]+content\s*=\s*['\"]|"
-    r"^\s*author\s*:\s*)(?P<value>[^<'\"\r\n]+)",
-    re.IGNORECASE | re.MULTILINE,
-)
-ASSET_ID_RE = re.compile(
-    r"(?:<meta[^>]+name\s*=\s*['\"]asset[-_ ]?id['\"][^>]+content\s*=\s*['\"]|"
-    r"^\s*asset[_ -]?id\s*:\s*)(?P<value>[^<'\"\r\n]+)",
-    re.IGNORECASE | re.MULTILINE,
-)
+DATE_RE = re.compile(r"^\s*date\s*:\s*(?P<value>[^<'\"\r\n]+)", re.IGNORECASE | re.MULTILINE)
+AUTHOR_RE = re.compile(r"^\s*author\s*:\s*(?P<value>[^<'\"\r\n]+)", re.IGNORECASE | re.MULTILINE)
+ASSET_ID_RE = re.compile(r"^\s*asset[_ -]?id\s*:\s*(?P<value>[^<'\"\r\n]+)", re.IGNORECASE | re.MULTILINE)
 
 
 @dataclass
@@ -61,6 +54,19 @@ def extract_value(pattern: re.Pattern[str], raw_text: str) -> str:
     return clean_value(match.group("value")) if match else ""
 
 
+def extract_meta_value(raw_text: str, expected_name: str) -> str:
+    """Extract a named meta value regardless of attribute order."""
+    normalized_expected_name = expected_name.casefold().replace("_", "-").replace(" ", "-")
+    for tag in META_TAG_RE.findall(raw_text):
+        attributes = {
+            match.group("name").casefold().replace("_", "-").replace(" ", "-"): clean_value(match.group("value"))
+            for match in META_ATTRIBUTE_RE.finditer(tag)
+        }
+        if attributes.get("name", "") == normalized_expected_name:
+            return attributes.get("content", "")
+    return ""
+
+
 def is_iso_date(value: str) -> bool:
     """Return true only for a real calendar date written as YYYY-MM-DD."""
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
@@ -73,9 +79,9 @@ def is_iso_date(value: str) -> bool:
 
 def extract_metadata(raw_text: str, source_name: str) -> Metadata:
     source_title = extract_value(TITLE_RE, raw_text)
-    source_date = extract_value(DATE_RE, raw_text)
-    source_author = extract_value(AUTHOR_RE, raw_text)
-    asset_id = extract_value(ASSET_ID_RE, raw_text)
+    source_date = extract_meta_value(raw_text, "date") or extract_value(DATE_RE, raw_text)
+    source_author = extract_meta_value(raw_text, "author") or extract_value(AUTHOR_RE, raw_text)
+    asset_id = extract_meta_value(raw_text, "asset-id") or extract_value(ASSET_ID_RE, raw_text)
     fallback_title = clean_value(Path(source_name).stem.replace("_", " ").replace("-", " "))
 
     return Metadata(
