@@ -1,30 +1,35 @@
-# Content & Metadata Sanitizer
+# Content and Metadata Sanitizer
 
-This small command-line tool prepares raw HTML and text assets for web publishing workflows. It:
+A Python command-line tool that prepares HTML and text assets for a subsequent publishing workflow. It does not upload or migrate content into Adobe CMS.
 
-- removes HTML-like and incomplete tags;
-- collapses repeated whitespace and normalizes Unicode to clean UTF-8;
-- extracts `Title`, `Date`, and `Author` metadata;
-- falls back to the file name for a missing title and reports missing date/author values as `Unknown`;
-- writes one cleaned `.txt` file per input asset and a machine-readable `summary.json` report.
+## What it does
+
+- Processes `.html`, `.htm`, and `.txt` inputs in batches.
+- Removes HTML-like tags, decodes entities, and normalizes Unicode and whitespace.
+- Extracts Title, Date, Author, and optional Asset ID fields.
+- Validates that Title, Date, and Author are present and that dates are real `YYYY-MM-DD` calendar dates.
+- Flags duplicate filename stems and repeated asset IDs while retaining each cleaned output.
+- Records per-file errors and continues processing the rest of the batch.
+- Writes cleaned text files, `summary.json`, spreadsheet-friendly `audit.csv`, and a structured `cms-ready.json` export.
+
+Metadata gaps and duplicate identifiers are reported as warnings; a file can still be cleaned so that an editor can resolve the issue. Date values in the structured export are left empty when invalid. The CMS-ready export is a handoff format, not a live CMS integration.
 
 ## Run the sample
 
-From this directory:
+Requires Python 3.9 or newer and no third-party packages.
 
 ```powershell
 python sanitizer.py
 ```
 
-The default folders are:
-
-- `sample_input/` — three intentionally messy sample assets.
-- `cleaned_output/` — generated sanitized files and `summary.json`.
-
-To use other folders:
+By default, the tool reads `sample_input/` and writes to `cleaned_output/`. Choose other folders with:
 
 ```powershell
-python sanitizer.py --input path\to\raw-assets --output path\to\cleaned-assets
+python sanitizer.py --input path\to\raw-assets --output path\to\prepared-assets
 ```
 
-No third-party packages are required. `requirements.txt` is included to document that the tool relies on Python's standard library only.
+## Unit tests
+
+```powershell
+python -m unittest discover -s tests -v
+```

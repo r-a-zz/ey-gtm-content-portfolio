@@ -39,3 +39,5 @@ menuToggle.addEventListener("click", () => {
   const isVisible = mainNav.classList.toggle("is-visible");
   menuToggle.setAttribute("aria-expanded", String(isVisible));
 });
+
+document.querySelector("#copyright-year").textContent = String(new Date().getFullYear());

@@ -1,45 +1,83 @@
 {
-  "input_folder": "C:\\Users\\ASUS\\Documents\\Project\\ey-gtm-portfolio\\02-metadata-sanitizer\\sample_input",
-  "output_folder": "C:\\Users\\ASUS\\Documents\\Project\\ey-gtm-portfolio\\02-metadata-sanitizer\\cleaned_output",
+  "input_folder": "sample_input",
+  "output_folder": "cleaned_output",
   "files_found": 3,
   "files_processed_successfully": 3,
+  "files_with_warnings": 0,
   "files_failed": 0,
+  "date_format": "YYYY-MM-DD (ISO 8601 calendar date)",
   "results": [
     {
       "file": "campaign-notes.html",
+      "cleaned_file": "campaign-notes.clean.txt",
       "status": "processed",
       "metadata": {
         "title": "Q3 Campaign Launch",
         "date": "2024-07-08",
         "author": "Maya Chen",
+        "asset_id": "",
         "title_valid": true,
         "date_valid": true,
         "author_valid": true
-      }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      },
+      "warnings": []
     },
     {
       "file": "market-insight.txt",
+      "cleaned_file": "market-insight.clean.txt",
       "status": "processed",
       "metadata": {
         "title": "Market Signals for Growth",
         "date": "2024-08-14",
         "author": "Jordan Lee",
+        "asset_id": "",
         "title_valid": true,
         "date_valid": true,
         "author_valid": true
-      }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      },
+      "warnings": []
     },
     {
       "file": "partner-brief.html",
+      "cleaned_file": "partner-brief.clean.txt",
       "status": "processed",
       "metadata": {
         "title": "Partner Enablement Brief",
         "date": "2024-09-02",
         "author": "Riley Okafor",
+        "asset_id": "",
         "title_valid": true,
         "date_valid": true,
         "author_valid": true
-      }
+      },
+      "validation": {
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      },
+      "warnings": []
     }
   ]
 }

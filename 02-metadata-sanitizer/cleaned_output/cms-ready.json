@@ -1,0 +1,72 @@
+{
+  "format_version": "1.0",
+  "description": "Prepared content and metadata for a subsequent publishing workflow; no CMS upload is performed.",
+  "assets": [
+    {
+      "source_filename": "campaign-notes.html",
+      "cleaned_filename": "campaign-notes.clean.txt",
+      "asset_id": null,
+      "title": "Q3 Campaign Launch",
+      "date": "2024-07-08",
+      "author": "Maya Chen",
+      "content_type": "html",
+      "body": "Q3 Campaign Launch Q3 Campaign Launch Align the team around one clear message. Ship faster and measure impact.",
+      "metadata_validation": {
+        "title": true,
+        "date": true,
+        "author": true,
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      }
+    },
+    {
+      "source_filename": "market-insight.txt",
+      "cleaned_filename": "market-insight.clean.txt",
+      "asset_id": null,
+      "title": "Market Signals for Growth",
+      "date": "2024-08-14",
+      "author": "Jordan Lee",
+      "content_type": "txt",
+      "body": "TITLE: Market Signals for Growth DATE: 2024-08-14 AUTHOR: Jordan Lee New buyer expectations are changing quickly. Teams need consistent, useful content across every channel.",
+      "metadata_validation": {
+        "title": true,
+        "date": true,
+        "author": true,
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      }
+    },
+    {
+      "source_filename": "partner-brief.html",
+      "cleaned_filename": "partner-brief.clean.txt",
+      "asset_id": null,
+      "title": "Partner Enablement Brief",
+      "date": "2024-09-02",
+      "author": "Riley Okafor",
+      "content_type": "html",
+      "body": "Partner Enablement Brief Partner enablement Share the latest toolkit with every regional lead. tag still needs a clean finish.",
+      "metadata_validation": {
+        "title": true,
+        "date": true,
+        "author": true,
+        "valid": true,
+        "issues": []
+      },
+      "duplicate_detection": {
+        "filename_stem": false,
+        "asset_id": false,
+        "duplicate_of": null
+      }
+    }
+  ]
+}

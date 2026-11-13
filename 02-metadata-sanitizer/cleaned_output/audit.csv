@@ -1,0 +1,4 @@
+file,cleaned_file,status,title,date,author,asset_id,title_valid,date_valid,author_valid,duplicate_filename_stem,duplicate_asset_id,duplicate_of,issues,error
+campaign-notes.html,campaign-notes.clean.txt,processed,Q3 Campaign Launch,2024-07-08,Maya Chen,,True,True,True,False,False,,,
+market-insight.txt,market-insight.clean.txt,processed,Market Signals for Growth,2024-08-14,Jordan Lee,,True,True,True,False,False,,,
+partner-brief.html,partner-brief.clean.txt,processed,Partner Enablement Brief,2024-09-02,Riley Okafor,,True,True,True,False,False,,,
